@@ -84,4 +84,37 @@ class TestRegexReplace {
         Assertions.assertEquals(expectedResultStr, resultStr);
     }
 
+    @Test
+    void unchangedIfNotMatchedNoFlag() {
+        String inputStr = "There are no persons in the room, each having no money in their pocket.";
+        String regexStr = "(\\d+)";
+        Function<RegexMatchData, String> replaceFunction = new MultiplyIntMatchReplaceFunction(3);
+        String resultStr = RegexReplace.replaceAll(inputStr, regexStr, replaceFunction);
+        String expectedResultStr = "There are no persons in the room, each having no money in their pocket.";
+        Assertions.assertEquals(expectedResultStr, resultStr);
+
+    }
+
+    @Test
+    void unchangedIfNotMatched() {
+        String inputStr = "There are no persons in the room, each having no money in their pocket.";
+        String regexStr = "(\\d+)";
+        Function<RegexMatchData, String> replaceFunction = new MultiplyIntMatchReplaceFunction(3);
+        String resultStr = RegexReplace.replaceAll(inputStr, regexStr, replaceFunction, false);
+        String expectedResultStr = "There are no persons in the room, each having no money in their pocket.";
+        Assertions.assertEquals(expectedResultStr, resultStr);
+
+    }
+
+    @Test
+    void nullIfNotMatched() {
+        String inputStr = "There are no persons in the room, each having no money in their pocket.";
+        String regexStr = "(\\d+)";
+        Function<RegexMatchData, String> replaceFunction = new MultiplyIntMatchReplaceFunction(3);
+        String resultStr = RegexReplace.replaceAll(inputStr, regexStr, replaceFunction, true);
+        String expectedResultStr = null;
+        Assertions.assertEquals(expectedResultStr, resultStr);
+
+    }
+
 }

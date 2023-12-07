@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 /**
  * Replacement matching data for one match.
  * @author NilsCoding
- * @version 1.0.0
+ * @version 2.0.0
  */
 public class RegexMatchData {
 
@@ -72,4 +72,19 @@ public class RegexMatchData {
         return this.parentMatcher.group();
     }
 
+    /**
+     * Returns the start position (inclusive).
+     * @return start position
+     */
+    public int getStartPosition() {
+        return this.parentMatcher.start();
+    }
+
+    /**
+     * Returns the end position (exclusive).
+     * @return end position
+     */
+    public int getEndPosition() {
+        return this.parentMatcher.end();
+    }
 }
